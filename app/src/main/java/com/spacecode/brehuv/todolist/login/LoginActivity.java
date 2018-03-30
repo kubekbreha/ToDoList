@@ -25,12 +25,9 @@ import android.view.WindowManager;
 import com.spacecode.brehuv.todolist.R;
 import com.spacecode.brehuv.todolist.login.fragment.LoginFragment;
 
+
 /**
  * Created by kubek on 3/29/18.
- */
-
-
-/**
  * Activity which handle loginFragments.
  * Add loginFragment.
  */
