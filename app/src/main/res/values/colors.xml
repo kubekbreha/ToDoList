@@ -1,12 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#333C45</color>
-    <color name="colorPrimaryDark">#FF23292F</color>
-    <color name="colorGradient">#4CAF50</color>
-    <color name="colorAccent">#333C45</color>
-    <color name="colorBackground">#333C45</color>
-    <color name="black">#000000</color>
-    <color name="white">#FFFFFF</color>
-    <color name="gray">#cecece</color>
-    <color name="progressBackground">#CFD8DC</color>
+    <color name="colorPrimary">#2E2E38</color>
+    <color name="colorPrimaryDark">#222126</color>
+    <color name="colorAccent">#D63438</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorBlack">#000000</color>
 </resources>
