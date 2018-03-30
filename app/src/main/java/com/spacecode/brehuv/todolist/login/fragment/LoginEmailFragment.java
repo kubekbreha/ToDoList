@@ -43,44 +43,37 @@ import com.google.firebase.database.ValueEventListener;
 import com.spacecode.brehuv.todolist.MainActivity;
 import com.spacecode.brehuv.todolist.R;
 
+import java.util.Objects;
 
 /**
- * Created by kubek on 1/21/18.
- */
-
-/**
+ * Created by kubek on 3/29/18.
  * A simple {@link Fragment} subclass.
  */
 public class LoginEmailFragment extends Fragment {
 
     private EditText mLoginEmailField;
     private EditText mLoginPasswordField;
-    private Button mLoginButton;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
     private ProgressDialog mProgres;
-    private AnimationDrawable mAnimationDrawable;
-    private RelativeLayout mRelativeLayout;
 
     public LoginEmailFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment\
         View view = inflater.inflate(R.layout.fragment_login_email, container, false);
 
-        mRelativeLayout = view.findViewById(R.id.email_login_gradient);
-
-        mLoginButton = view.findViewById(R.id.login_email_button);
+        RelativeLayout mRelativeLayout = view.findViewById(R.id.email_login_gradient);
+        Button mLoginButton = view.findViewById(R.id.login_email_button);
         mLoginEmailField = view.findViewById(R.id.login_email);
         mLoginPasswordField = view.findViewById(R.id.login_password);
 
-        mAnimationDrawable = (AnimationDrawable) mRelativeLayout.getBackground();
+        AnimationDrawable mAnimationDrawable = (AnimationDrawable) mRelativeLayout.getBackground();
         mAnimationDrawable.setEnterFadeDuration(4500);
         mAnimationDrawable.setExitFadeDuration(4500);
         mAnimationDrawable.start();
@@ -130,15 +123,11 @@ public class LoginEmailFragment extends Fragment {
      * If not send user to SetupActivity.
      */
     private void checkUserExist() {
-        final String userId = mAuth.getCurrentUser().getUid();
+        final String userId = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
         mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChild(userId)) {
                     updateUI();
-                } else {
-                    goToSetupActivity();
-                }
             }
 
             @Override
@@ -153,21 +142,9 @@ public class LoginEmailFragment extends Fragment {
      * Called when user is authenticated.
      */
     private void updateUI() {
-        //TODO: app crash here
         Intent accountIntent = new Intent(getActivity(), MainActivity.class);
         startActivity(accountIntent);
-        getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        getActivity().finish();
-    }
-
-    /**
-     * Open SetupActivity.
-     * Called when user is logged for first time and don't have set profile picture and name.
-     */
-    private void goToSetupActivity() {
-        Intent accountIntent = new Intent(getActivity(), MainActivity.class);
-        startActivity(accountIntent);
-        getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        Objects.requireNonNull(getActivity()).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         getActivity().finish();
     }
 

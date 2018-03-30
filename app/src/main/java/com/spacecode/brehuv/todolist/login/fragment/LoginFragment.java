@@ -1,18 +1,18 @@
 /*
-* Copyright 2018 The Android Open Source Project
-*
-* Licensed under the Apache License, Version 2.0 (the "License");
-* you may not use this file except in compliance with the License.
-* You may obtain a copy of the License at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS,
-* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-* See the License for the specific language governing permissions and
-* limitations under the License.
-*/
+ * Copyright 2018 The Android Open Source Project
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 
 package com.spacecode.brehuv.todolist.login.fragment;
 
@@ -60,17 +60,16 @@ import com.google.firebase.database.ValueEventListener;
 import com.spacecode.brehuv.todolist.MainActivity;
 import com.spacecode.brehuv.todolist.R;
 
-/**
- * Created by kubek on 1/21/18.
- */
+import java.util.Objects;
+
 
 /**
+ * Created by kubek on 2/29/18.
  * A simple {@link Fragment} subclass.
  */
 public class LoginFragment extends Fragment {
 
     private static final String TAG = "LOGIN_FRAGMENT";
-
     private static final int GOOGLE_SIGN_IN_REQUEST_CODE = 0;
     private static final int FACEBOOK_LOG_IN_REQUEST_CODE = 64206;
 
@@ -78,9 +77,6 @@ public class LoginFragment extends Fragment {
     private DatabaseReference mDatabase;
     private GoogleApiClient mGoogleApiClient; // for google sign in
     private FirebaseAuth.AuthStateListener mAuthStateListener;
-
-    private AnimationDrawable mAnimationDrawable;
-    private RelativeLayout mRelativeLayout;
     private CallbackManager mFacebookCallbackManager; // for facebook log in
 
     //SignIn buttons
@@ -97,8 +93,7 @@ public class LoginFragment extends Fragment {
      * Create instance of fragment.
      */
     public static LoginFragment newInstance() {
-        LoginFragment fragment = new LoginFragment();
-        return fragment;
+        return new LoginFragment();
     }
 
     @Override
@@ -111,9 +106,16 @@ public class LoginFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(final LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull final LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_login, container, false);
+
+        //gradient
+        RelativeLayout mRelativeLayout = view.findViewById(R.id.layout_login);
+        AnimationDrawable mAnimationDrawable = (AnimationDrawable) mRelativeLayout.getBackground();
+        mAnimationDrawable.setEnterFadeDuration(4500);
+        mAnimationDrawable.setExitFadeDuration(4500);
+        mAnimationDrawable.start();
 
         mDatabase = FirebaseDatabase.getInstance().getReference().child("users");
         mAuth = FirebaseAuth.getInstance();
@@ -130,14 +132,6 @@ public class LoginFragment extends Fragment {
                 initFBFacebookLogIn();
             }
         });
-
-        //gradient
-        mRelativeLayout = view.findViewById(R.id.layout_login);
-        mAnimationDrawable = (AnimationDrawable) mRelativeLayout.getBackground();
-        mAnimationDrawable.setEnterFadeDuration(4500);
-        mAnimationDrawable.setExitFadeDuration(4500);
-        mAnimationDrawable.start();
-
         mGoogleButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,11 +149,11 @@ public class LoginFragment extends Fragment {
      * Listener on mLoginButton.
      * On click send to LoginFragment.
      */
-    private void loginButtonListener(){
+    private void loginButtonListener() {
         mLoginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
                 LoginEmailFragment fragment = new LoginEmailFragment();
                 fm.beginTransaction()
                         //.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
@@ -175,11 +169,11 @@ public class LoginFragment extends Fragment {
      * Listener on mRegisterButton.
      * On click send to RegisterFragment.
      */
-    private void registerButtonListener(){
+    private void registerButtonListener() {
         mRegisterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                FragmentManager fm = getActivity().getSupportFragmentManager();
+                FragmentManager fm = Objects.requireNonNull(getActivity()).getSupportFragmentManager();
                 RegisterFragment fragment = new RegisterFragment();
                 fm.beginTransaction()
                         //.setCustomAnimations(R.anim.enter_from_right, R.anim.exit_to_left)
@@ -197,6 +191,7 @@ public class LoginFragment extends Fragment {
             GoogleSignInResult result = Auth.GoogleSignInApi.getSignInResultFromIntent(data);
             if (result.isSuccess()) {
                 GoogleSignInAccount account = result.getSignInAccount();
+                assert account != null;
                 firebaseAuthWithGoogle(account);
             } else {
                 Toast.makeText(getActivity(), "failed", Toast.LENGTH_SHORT).show();
@@ -207,7 +202,6 @@ public class LoginFragment extends Fragment {
     }
 
 
-    //TODO: Is mAuth there enought ?
     /**
      * Initialize facebook variable.
      */
@@ -285,7 +279,6 @@ public class LoginFragment extends Fragment {
         });
     }
 
-    //TODO : Fix facebook logIn!
 
     /**
      * This take care of facebook logIn.
@@ -295,13 +288,14 @@ public class LoginFragment extends Fragment {
         Log.d(TAG, "handleFacebookAccessToken:" + token);
         AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(LoginFragment.this.getActivity(), new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(Objects.requireNonNull(LoginFragment.this.getActivity()), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
+                            assert user != null;
                             Toast.makeText(getActivity(), user.toString(), Toast.LENGTH_SHORT).show();
                             mFacebookButton.setEnabled(true);
                             checkUserExist();
@@ -334,8 +328,9 @@ public class LoginFragment extends Fragment {
                 .build();
 
         Context context = getContext();
+        assert context != null;
         mGoogleApiClient = new GoogleApiClient.Builder(context)
-                .enableAutoManage(getActivity(), new GoogleApiClient.OnConnectionFailedListener() {
+                .enableAutoManage(Objects.requireNonNull(getActivity()), new GoogleApiClient.OnConnectionFailedListener() {
                     @Override
                     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
                         Log.d(TAG, connectionResult.getErrorMessage());
@@ -351,7 +346,7 @@ public class LoginFragment extends Fragment {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(LoginFragment.this.getActivity(), new OnCompleteListener<AuthResult>() {
+                .addOnCompleteListener(Objects.requireNonNull(LoginFragment.this.getActivity()), new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
@@ -383,12 +378,7 @@ public class LoginFragment extends Fragment {
             mDatabase.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    if (dataSnapshot.hasChild(userId)) {
-                        updateUI();
-                    } else {
-                        Toast.makeText(getActivity(), "You need to set up your acount ", Toast.LENGTH_SHORT).show();
-                        goToSetupActivity();
-                    }
+                    updateUI();
                 }
 
                 @Override
@@ -405,19 +395,7 @@ public class LoginFragment extends Fragment {
     private void updateUI() {
         Intent accountIntent = new Intent(getActivity(), MainActivity.class);
         startActivity(accountIntent);
-        getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        Objects.requireNonNull(getActivity()).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         getActivity().finish();
     }
-
-    /**
-     * Open SetupActivity.
-     * Called when user is logged for first time and don't have set profile picture and name.
-     */
-    private void goToSetupActivity() {
-        Intent accountIntent = new Intent(getActivity(), MainActivity.class);
-        startActivity(accountIntent);
-        getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        getActivity().finish();
-    }
-
 }

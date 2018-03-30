@@ -19,7 +19,6 @@ package com.spacecode.brehuv.todolist.login.fragment;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -43,12 +42,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.spacecode.brehuv.todolist.MainActivity;
 import com.spacecode.brehuv.todolist.R;
 
+import java.util.Objects;
 
 /**
- * Created by kubek on 1/21/18.
- */
-
-/**
+ * Created by kubek on 3/29/18.
  * A simple {@link Fragment} subclass.
  */
 public class RegisterFragment extends Fragment {
@@ -58,36 +55,32 @@ public class RegisterFragment extends Fragment {
     private Button mRegisterButton;
 
     private FirebaseAuth mAuth;
-    private ProgressDialog mProgress;
     private DatabaseReference mDatabase;
 
-    private AnimationDrawable mAnimationDrawable;
-    private RelativeLayout mRelativeLayout;
+    private ProgressDialog mProgress;
 
     public RegisterFragment() {
         // Required empty public constructor
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_register, container, false);
 
-        mRelativeLayout = view.findViewById(R.id.register_gradient);
+        RelativeLayout mRelativeLayout = view.findViewById(R.id.register_gradient);
         mEmailField = view.findViewById(R.id.edit_email);
         mPasswordField = view.findViewById(R.id.edit_password);
         mRegisterButton = view.findViewById(R.id.confirm_register_button);
 
         // Inflate the layout for this fragment
-        mAnimationDrawable = (AnimationDrawable) mRelativeLayout.getBackground();
+        AnimationDrawable mAnimationDrawable = (AnimationDrawable) mRelativeLayout.getBackground();
         mAnimationDrawable.setEnterFadeDuration(4500);
         mAnimationDrawable.setExitFadeDuration(4500);
         mAnimationDrawable.start();
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            Window w = getActivity().getWindow(); // in Activity's onCreate() for instance
-            w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
-        }
+        Window w = Objects.requireNonNull(getActivity()).getWindow(); // in Activity's onCreate() for instance
+        w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         mAuth = FirebaseAuth.getInstance();
         mProgress = new ProgressDialog(getContext());
@@ -129,7 +122,7 @@ public class RegisterFragment extends Fragment {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        String user_id = mAuth.getCurrentUser().getUid();
+                        String user_id = Objects.requireNonNull(mAuth.getCurrentUser()).getUid();
                         DatabaseReference current_user_db = mDatabase.child(user_id);
 
                         current_user_db.child("image").setValue("default");
@@ -150,11 +143,9 @@ public class RegisterFragment extends Fragment {
      * Called when user is authenticated.
      */
     private void updateUI() {
-        Toast.makeText(getActivity(), "registered", Toast.LENGTH_SHORT).show();
-
         Intent accountIntent = new Intent(getActivity(), MainActivity.class);
         startActivity(accountIntent);
-        getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        Objects.requireNonNull(getActivity()).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         getActivity().finish();
     }
 

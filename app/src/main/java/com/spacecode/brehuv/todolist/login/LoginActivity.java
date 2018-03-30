@@ -16,7 +16,6 @@
 
 package com.spacecode.brehuv.todolist.login;
 
-import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -27,7 +26,7 @@ import com.spacecode.brehuv.todolist.R;
 import com.spacecode.brehuv.todolist.login.fragment.LoginFragment;
 
 /**
- * Created by kubek on 1/21/18.
+ * Created by kubek on 3/29/18.
  */
 
 
@@ -51,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             fragmentTransaction.commit();
         }
 
-        Window w = getWindow(); // in Activity's onCreate() for instance
+        Window w = getWindow();
         w.setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
     }
 
