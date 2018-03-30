@@ -57,7 +57,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.spacecode.brehuv.todolist.MainActivity;
+import com.spacecode.brehuv.todolist.CoreActivity;
 import com.spacecode.brehuv.todolist.R;
 
 import java.util.Objects;
@@ -393,7 +393,7 @@ public class LoginFragment extends Fragment {
      * Called when user is authenticated.
      */
     private void updateUI() {
-        Intent accountIntent = new Intent(getActivity(), MainActivity.class);
+        Intent accountIntent = new Intent(getActivity(), CoreActivity.class);
         startActivity(accountIntent);
         Objects.requireNonNull(getActivity()).overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         getActivity().finish();

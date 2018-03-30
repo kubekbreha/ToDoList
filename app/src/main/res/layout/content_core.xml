@@ -4,17 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
-    tools:context="com.spacecode.brehuv.todolist.MainActivity">
-
-    <FrameLayout
-        android:id="@+id/frame_status_bar"
-        android:layout_width="match_parent"
-        android:layout_height="24dp" />
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".CoreActivity"
+    tools:showIn="@layout/app_bar_core"
+    android:background="@color/colorBackground">
 
 
     <ProgressBar
-        android:layout_below="@+id/frame_status_bar"
         android:id="@+id/GreenProgressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="fill_parent"
