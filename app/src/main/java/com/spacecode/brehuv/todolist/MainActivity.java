@@ -19,7 +19,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    private Button button1;
+    private Button mNavDropdownButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,12 +37,6 @@ public class MainActivity extends AppCompatActivity
             }
         });
 
-
-
-
-
-
-
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -55,12 +49,12 @@ public class MainActivity extends AppCompatActivity
 
 
         View header = navigationView.getHeaderView(0);
-        button1 =  header.findViewById(R.id.button1);
-        button1.setOnClickListener(new View.OnClickListener() {
+        mNavDropdownButton =  header.findViewById(R.id.button1);
+        mNavDropdownButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //Creating the instance of PopupMenu
-                PopupMenu popup = new PopupMenu(MainActivity.this, button1);
+                PopupMenu popup = new PopupMenu(MainActivity.this, mNavDropdownButton);
                 //Inflating the Popup using xml file
                 popup.getMenuInflater()
                         .inflate(R.menu.nav_dropdown, popup.getMenu());
@@ -76,7 +70,6 @@ public class MainActivity extends AppCompatActivity
                         return true;
                     }
                 });
-
                 popup.show(); //showing popup menu
             }
         }); //closing the setOnClickListener method
