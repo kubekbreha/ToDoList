@@ -5,11 +5,10 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.spacecode.brehuv.todolist.R;
 
@@ -18,6 +17,7 @@ import com.spacecode.brehuv.todolist.R;
  */
 public class TodayFragment extends Fragment {
 
+    private ProgressBar mProgressBar;
 
     public TodayFragment() {
         // Required empty public constructor
@@ -37,7 +37,7 @@ public class TodayFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_today, container, false);
 
-        FloatingActionButton fab =  view.findViewById(R.id.fab);
+        FloatingActionButton fab =  view.findViewById(R.id.fab_button);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,6 +45,9 @@ public class TodayFragment extends Fragment {
                         .setAction("Action", null).show();
             }
         });
+
+        mProgressBar = view.findViewById(R.id.progress_bar);
+        ProgressUtil.increaseProgress(mProgressBar, 67);
 
         return view;
     }
