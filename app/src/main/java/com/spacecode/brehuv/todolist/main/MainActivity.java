@@ -1,6 +1,7 @@
 package com.spacecode.brehuv.todolist.main;
 
 import android.app.Fragment;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -25,6 +26,7 @@ import com.spacecode.brehuv.todolist.main.fragments.TodayFragment;
 import com.spacecode.brehuv.todolist.main.fragments.WeekFragment;
 
 import java.time.Month;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,11 +40,13 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+
         if (savedInstanceState == null) {
             TodayFragment loginFragment= new TodayFragment();
             FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
             fragmentTransaction.add(R.id.main_replacable_frame, loginFragment);
             fragmentTransaction.commit();
+            Objects.requireNonNull(this.getSupportActionBar()).setTitle(R.string.today);
         }
 
 
@@ -98,6 +102,7 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.main_replacable_frame ,todayFragment)
                     .addToBackStack(null)
                     .commit();
+            Objects.requireNonNull(this.getSupportActionBar()).setTitle(R.string.today);
 
         } else if (id == R.id.nav_this_week) {
             WeekFragment weekFragment = WeekFragment.newInstance();
@@ -105,6 +110,7 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.main_replacable_frame ,weekFragment)
                     .addToBackStack(null)
                     .commit();
+            Objects.requireNonNull(this.getSupportActionBar()).setTitle(R.string.this_week);
 
         } else if (id == R.id.nav_this_month) {
             MonthFragment monthFragment = MonthFragment.newInstance();
@@ -112,6 +118,7 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.main_replacable_frame ,monthFragment)
                     .addToBackStack(null)
                     .commit();
+            Objects.requireNonNull(this.getSupportActionBar()).setTitle(R.string.this_month);
 
         } else if (id == R.id.nav_not_completed) {
             NotCompletedFragment notCompletedFragment = NotCompletedFragment.newInstance();
@@ -119,6 +126,8 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.main_replacable_frame ,notCompletedFragment)
                     .addToBackStack(null)
                     .commit();
+            Objects.requireNonNull(this.getSupportActionBar()).setTitle(R.string.not_completed);
+
 
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

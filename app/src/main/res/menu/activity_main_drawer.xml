@@ -10,22 +10,22 @@
         <item
             android:id="@+id/nav_today"
             android:icon="@drawable/ic_event_white_24dp"
-            android:title="Today" />
+            android:title="@string/today" />
 
         <item
             android:id="@+id/nav_this_week"
             android:icon="@drawable/ic_date_range_white_24dp"
-            android:title="This Week" />
+            android:title="@string/this_week" />
 
         <item
             android:id="@+id/nav_this_month"
             android:icon="@drawable/ic_date_range_ps_white_24dp"
-            android:title="This Month" />
+            android:title="@string/this_month" />
 
         <item
             android:id="@+id/nav_not_completed"
             android:icon="@drawable/ic_reorder_white_24dp"
-            android:title="Not Completed" />
+            android:title="@string/not_completed" />
     </group>
 
     <group
