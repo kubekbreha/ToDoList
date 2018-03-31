@@ -1,8 +1,11 @@
-package com.spacecode.brehuv.todolist;
+package com.spacecode.brehuv.todolist.main;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -14,6 +17,9 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
+
+import com.spacecode.brehuv.todolist.R;
+import com.spacecode.brehuv.todolist.main.fragments.TodayFragment;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -27,14 +33,13 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar =  findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab =  findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        if (savedInstanceState == null) {
+            TodayFragment loginFragment= new TodayFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            fragmentTransaction.add(R.id.main_replacable_frame, loginFragment);
+            fragmentTransaction.commit();
+        }
+
 
         DrawerLayout drawer =  findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -45,8 +50,7 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-
+        //button in navigation drawer
         View header = navigationView.getHeaderView(0);
         mNavDropdownButton =  header.findViewById(R.id.nav_dropdown_button);
         mNavDropdownButton.setOnClickListener(new View.OnClickListener() {
@@ -75,35 +79,38 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
-
   
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
+        if (id == R.id.nav_today) {
+            TodayFragment todayFragment = TodayFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main_replacable_frame ,todayFragment)
+                    .addToBackStack(null)
+                    .commit();
+        } else if (id == R.id.nav_this_week) {
+            // Handle the Gallery Fragment
 
-        } else if (id == R.id.nav_gallery) {
+        } else if (id == R.id.nav_this_month) {
+            // Handle the SlideShow Fragment
 
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.nav_not_completed) {
+            // Handle the Tools Fragment
 
         }
-
-        DrawerLayout drawer =  findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    @Override
+    public void onBackPressed() {
+
+            super.onBackPressed();
+            finish();
     }
 }

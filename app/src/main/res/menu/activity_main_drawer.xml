@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
 
@@ -9,23 +8,32 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/nav_camera"
-            android:title="Import" />
+            android:id="@+id/nav_today"
+            android:title="Today" />
+
         <item
-            android:id="@+id/nav_gallery"
-            android:title="Gallery" />
+            android:id="@+id/nav_this_week"
+            android:title="This Week" />
+
         <item
-            android:id="@+id/nav_slideshow"
-            android:title="Slideshow" />
+            android:id="@+id/nav_this_month"
+            android:title="This Month" />
+
+        <item
+            android:id="@+id/nav_not_completed"
+            android:title="Not Completed" />
     </group>
 
     <group
         android:id="@+id/menu_bottom"
         android:checkableBehavior="none">
         <item
-            android:id="@+id/nav_manage"
-            android:title="Tools" />
+            android:id="@+id/nav_user"
+            android:title="User" />
 
+        <item
+            android:id="@+id/nav_settings"
+            android:title="Settings" />
 
     </group>
 
