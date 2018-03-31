@@ -19,7 +19,12 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.spacecode.brehuv.todolist.R;
+import com.spacecode.brehuv.todolist.main.fragments.MonthFragment;
+import com.spacecode.brehuv.todolist.main.fragments.NotCompletedFragment;
 import com.spacecode.brehuv.todolist.main.fragments.TodayFragment;
+import com.spacecode.brehuv.todolist.main.fragments.WeekFragment;
+
+import java.time.Month;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -49,6 +54,8 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView =  findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        //icons white color
+        navigationView.setItemIconTintList(null);
 
         //button in navigation drawer
         View header = navigationView.getHeaderView(0);
@@ -91,14 +98,27 @@ public class MainActivity extends AppCompatActivity
                     .replace(R.id.main_replacable_frame ,todayFragment)
                     .addToBackStack(null)
                     .commit();
+
         } else if (id == R.id.nav_this_week) {
-            // Handle the Gallery Fragment
+            WeekFragment weekFragment = WeekFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main_replacable_frame ,weekFragment)
+                    .addToBackStack(null)
+                    .commit();
 
         } else if (id == R.id.nav_this_month) {
-            // Handle the SlideShow Fragment
+            MonthFragment monthFragment = MonthFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main_replacable_frame ,monthFragment)
+                    .addToBackStack(null)
+                    .commit();
 
         } else if (id == R.id.nav_not_completed) {
-            // Handle the Tools Fragment
+            NotCompletedFragment notCompletedFragment = NotCompletedFragment.newInstance();
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.main_replacable_frame ,notCompletedFragment)
+                    .addToBackStack(null)
+                    .commit();
 
         }
         DrawerLayout drawer = findViewById(R.id.drawer_layout);

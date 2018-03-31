@@ -9,18 +9,22 @@
 
         <item
             android:id="@+id/nav_today"
+            android:icon="@drawable/ic_event_white_24dp"
             android:title="Today" />
 
         <item
             android:id="@+id/nav_this_week"
+            android:icon="@drawable/ic_date_range_white_24dp"
             android:title="This Week" />
 
         <item
             android:id="@+id/nav_this_month"
+            android:icon="@drawable/ic_date_range_ps_white_24dp"
             android:title="This Month" />
 
         <item
             android:id="@+id/nav_not_completed"
+            android:icon="@drawable/ic_reorder_white_24dp"
             android:title="Not Completed" />
     </group>
 
