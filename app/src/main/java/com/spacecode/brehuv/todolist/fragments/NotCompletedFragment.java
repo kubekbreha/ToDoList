@@ -1,4 +1,4 @@
-package com.spacecode.brehuv.todolist.main.fragments;
+package com.spacecode.brehuv.todolist.fragments;
 
 
 import android.os.Bundle;

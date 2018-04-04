@@ -1,16 +1,18 @@
-package com.spacecode.brehuv.todolist.main.fragments;
+package com.spacecode.brehuv.todolist.fragments;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
+import com.spacecode.brehuv.todolist.AddTODO;
 import com.spacecode.brehuv.todolist.R;
+import com.spacecode.brehuv.todolist.Utils.ProgressUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -41,8 +43,9 @@ public class TodayFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent addTODO = new Intent(getActivity(), AddTODO.class);
+                startActivity(addTODO);
+                getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
         });
 

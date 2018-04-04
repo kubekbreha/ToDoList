@@ -1,4 +1,4 @@
-package com.spacecode.brehuv.todolist.main;
+package com.spacecode.brehuv.todolist;
 
 import android.app.Fragment;
 import android.graphics.Typeface;
@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -19,13 +20,11 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import com.spacecode.brehuv.todolist.R;
-import com.spacecode.brehuv.todolist.main.fragments.MonthFragment;
-import com.spacecode.brehuv.todolist.main.fragments.NotCompletedFragment;
-import com.spacecode.brehuv.todolist.main.fragments.TodayFragment;
-import com.spacecode.brehuv.todolist.main.fragments.WeekFragment;
+import com.spacecode.brehuv.todolist.fragments.MonthFragment;
+import com.spacecode.brehuv.todolist.fragments.NotCompletedFragment;
+import com.spacecode.brehuv.todolist.fragments.TodayFragment;
+import com.spacecode.brehuv.todolist.fragments.WeekFragment;
 
-import java.time.Month;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
@@ -133,13 +132,5 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-
-    @Override
-    public void onBackPressed() {
-
-            super.onBackPressed();
-            finish();
     }
 }

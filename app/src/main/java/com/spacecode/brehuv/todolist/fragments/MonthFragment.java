@@ -1,4 +1,4 @@
-package com.spacecode.brehuv.todolist.main.fragments;
+package com.spacecode.brehuv.todolist.fragments;
 
 
 import android.os.Bundle;
@@ -12,18 +12,19 @@ import com.spacecode.brehuv.todolist.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class WeekFragment extends Fragment {
+public class MonthFragment extends Fragment {
 
 
-    public WeekFragment() {
+    public MonthFragment() {
         // Required empty public constructor
     }
+
 
     /**
      * Create instance of fragment.
      */
-    public static WeekFragment newInstance() {
-        WeekFragment fragment = new WeekFragment();
+    public static MonthFragment newInstance() {
+        MonthFragment fragment = new MonthFragment();
         return fragment;
     }
 
@@ -32,7 +33,7 @@ public class WeekFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_week, container, false);
+        return inflater.inflate(R.layout.fragment_month, container, false);
     }
 
 }
