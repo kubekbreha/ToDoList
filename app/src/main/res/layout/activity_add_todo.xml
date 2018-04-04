@@ -1,9 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".main.AddTODO">
+    tools:context=".AddTODO"
+    android:background="#4CAF50">
 
-</android.support.constraint.ConstraintLayout>
+
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/new_run_button"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="8dp"
+        android:background="@drawable/button_background_gradient_green"
+        android:clickable="true"
+        android:focusable="true"
+        android:text="Start"
+        android:textColor="@color/colorWhite"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+
+</RelativeLayout>
