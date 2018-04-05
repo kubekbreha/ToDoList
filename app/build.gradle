@@ -28,6 +28,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
     implementation 'com.google.firebase:firebase-core:12.0.1'
+    implementation (group: 'com.cloudant', name: 'cloudant-sync-datastore-android', version:'latest.release')
 }
 
 apply plugin: 'com.google.gms.google-services'
