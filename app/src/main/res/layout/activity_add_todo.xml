@@ -1,16 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddTODO"
     android:background="#4CAF50">
 
+    <RelativeLayout
+        android:id="@+id/todo_status_bar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"></RelativeLayout>
+
+
+
+
+    <EditText
+        android:id="@+id/todo_text"
+        android:layout_margin="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/new_todo_button"
+        android:layout_below="@+id/todo_status_bar"
+        android:inputType= "textCapSentences|textAutoCorrect"/>
+
 
 
     <android.support.v7.widget.AppCompatButton
-        android:id="@+id/new_run_button"
+        android:id="@+id/new_todo_button"
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:layout_alignParentBottom="true"
