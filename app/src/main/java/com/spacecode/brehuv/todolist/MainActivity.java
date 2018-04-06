@@ -1,6 +1,7 @@
 package com.spacecode.brehuv.todolist;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -126,9 +127,14 @@ public class MainActivity extends AppCompatActivity
                     .addToBackStack(null)
                     .commit();
             Objects.requireNonNull(this.getSupportActionBar()).setTitle(R.string.not_completed);
-
-
+        } else if (id == R.id.nav_settings) {
+            Intent addTODO = new Intent(this, SettingsActivity.class);
+            startActivity(addTODO);
+            this.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
         }
+
+
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
