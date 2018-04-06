@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <EditTextPreference
+        android:defaultValue="Username of Cloudant Here"
+        android:key="key_username"
+        android:summary="This is a default username."
+        android:title="Username " />
+    <EditTextPreference
+        android:defaultValue="test_db"
+        android:key="key_dbname"
+        android:summary="This is a default dbname."
+        android:title="Dbname " />
+    <EditTextPreference
+        android:defaultValue="Api Key Value"
+        android:key="api_key"
+        android:summary="This is a default API key."
+        android:title="API Key " />
+    <EditTextPreference
+        android:defaultValue="Api Key Password"
+        android:key="api_pwd"
+        android:summary="This is a default API password."
+        android:title="API Password " />
+</PreferenceScreen>
