@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AddTODO"
+    tools:context=".task.AddTask"
     android:background="#4CAF50">
 
     <RelativeLayout

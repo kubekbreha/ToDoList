@@ -1,4 +1,4 @@
-package com.spacecode.brehuv.todolist.Utils;
+package com.spacecode.brehuv.todolist.utils;
 
 import android.widget.ProgressBar;
 

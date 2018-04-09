@@ -10,9 +10,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ProgressBar;
 
-import com.spacecode.brehuv.todolist.AddTODO;
+import com.spacecode.brehuv.todolist.task.AddTask;
 import com.spacecode.brehuv.todolist.R;
-import com.spacecode.brehuv.todolist.Utils.ProgressUtil;
+import com.spacecode.brehuv.todolist.utils.ProgressUtil;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -43,7 +43,7 @@ public class TodayFragment extends Fragment {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent addTODO = new Intent(getActivity(), AddTODO.class);
+                Intent addTODO = new Intent(getActivity(), AddTask.class);
                 startActivity(addTODO);
                 getActivity().overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             }
