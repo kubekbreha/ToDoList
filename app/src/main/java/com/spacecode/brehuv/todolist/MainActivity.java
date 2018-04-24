@@ -1,14 +1,8 @@
 package com.spacecode.brehuv.todolist;
 
-import android.app.Fragment;
 import android.content.Intent;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -21,6 +15,7 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+
 import com.spacecode.brehuv.todolist.fragments.MonthFragment;
 import com.spacecode.brehuv.todolist.fragments.NotCompletedFragment;
 import com.spacecode.brehuv.todolist.fragments.TodayFragment;
@@ -29,9 +24,14 @@ import com.spacecode.brehuv.todolist.fragments.WeekFragment;
 import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener{
 
     private Button mNavDropdownButton;
+
+    static final String LOG_TAG = "TodoActivity";
+
+    private static final int DIALOG_NEW_TASK = 1;
+    private static final int DIALOG_PROGRESS = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

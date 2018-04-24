@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.spacecode.brehuv.todolist">
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -22,6 +21,7 @@
         </activity>
         <activity android:name=".task.AddTask" />
         <activity android:name=".SettingsActivity" />
+        <activity android:name=".task.AddTaskActivity"></activity>
     </application>
 
 </manifest>
