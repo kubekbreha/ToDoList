@@ -90,14 +90,14 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-  
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
         if (id == R.id.nav_today) {
-            TodayFragment todayFragment = TodayFragment.newInstance();
+            TodayFragment todayFragment = TodayFragment.Companion.newInstance();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.main_replacable_frame ,todayFragment)
                     .addToBackStack(null)
@@ -105,7 +105,7 @@ public class MainActivity extends AppCompatActivity
             Objects.requireNonNull(this.getSupportActionBar()).setTitle(R.string.today);
 
         } else if (id == R.id.nav_this_week) {
-            WeekFragment weekFragment = WeekFragment.newInstance();
+            WeekFragment weekFragment = WeekFragment.Companion.newInstance();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.main_replacable_frame ,weekFragment)
                     .addToBackStack(null)
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity
             Objects.requireNonNull(this.getSupportActionBar()).setTitle(R.string.this_week);
 
         } else if (id == R.id.nav_this_month) {
-            MonthFragment monthFragment = MonthFragment.newInstance();
+            MonthFragment monthFragment = MonthFragment.Companion.newInstance();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.main_replacable_frame ,monthFragment)
                     .addToBackStack(null)
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity
             Objects.requireNonNull(this.getSupportActionBar()).setTitle(R.string.this_month);
 
         } else if (id == R.id.nav_not_completed) {
-            NotCompletedFragment notCompletedFragment = NotCompletedFragment.newInstance();
+            NotCompletedFragment notCompletedFragment = NotCompletedFragment.Companion.newInstance();
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.main_replacable_frame ,notCompletedFragment)
                     .addToBackStack(null)
